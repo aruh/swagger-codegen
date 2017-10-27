@@ -1,0 +1,11 @@
+{{#models}}
+{{#model}}
+import {JsonObject, JsonProperty} from 'json2typescript';
+{{#tsImports}}
+import { {{classname}} } from './{{filename}}';
+{{/tsImports}}
+
+
+{{#isEnum}}{{>modelEnum}}{{/isEnum}}{{^isEnum}}{{>modelGeneric}}{{/isEnum}}
+{{/model}}
+{{/models}}
