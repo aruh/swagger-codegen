@@ -7,9 +7,9 @@ export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
 
 {{#vars}}
     {{#description}}
-        /**
-        * {{{description}}}
-        */
+    /**
+    * {{{description}}}
+    */
     {{/description}}
     @JsonProperty('{{name}}', {{vendorExtensions.j2tDataType}}{{^required}}, true{{/required}})
     {{name}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}} = {{vendorExtensions.j2tDefaultValue}};
