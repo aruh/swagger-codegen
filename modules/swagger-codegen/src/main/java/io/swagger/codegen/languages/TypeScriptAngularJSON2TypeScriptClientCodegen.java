@@ -63,7 +63,7 @@ public class TypeScriptAngularJSON2TypeScriptClientCodegen extends TypeScriptAng
         }
         if (prop.isString) return "String";
         if (prop.isBoolean) return "Boolean";
-        if (prop.isInteger || prop.isNumeric) return "Number";
+        if (prop.isNumeric || prop.isInteger || prop.isLong || prop.isFloat || prop.isDouble) return "Number";
         if (prop.isDateTime) return "Date";
         return prop.datatype;
     }
