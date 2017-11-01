@@ -8,8 +8,13 @@ import java.util.Map;
 
 public class TypeScriptAngularJSON2TypeScriptClientCodegen extends TypeScriptAngularClientCodegen {
 
-    private static final String KEY_J2T_DATA_TYPE = "j2tDataType";
-    private static final String KEY_J2T_DEFAULT_VALUE = "j2tDefaultValue";
+    public static final String TYPE_NUMBER = "Number";
+    public static final String TYPE_STRING = "String";
+    public static final String TYPE_BOOLEAN = "Boolean";
+    public static final String TYPE_DATE = "Date";
+
+    public static final String KEY_J2T_DATA_TYPE = "j2tDataType";
+    public static final String KEY_J2T_DEFAULT_VALUE = "j2tDefaultValue";
     private static final String VALUE_NULL = "null";
     private static final String VALUE_UNDEFINED = "undefined";
 
@@ -23,9 +28,9 @@ public class TypeScriptAngularJSON2TypeScriptClientCodegen extends TypeScriptAng
 
     @Override
     public Map<String, Object> postProcessAllModels(Map<String, Object> objs) {
-        Map<String, Object> processedModels = super.postProcessAllModels(objs);
+        Map<String, Object> result = super.postProcessAllModels(objs);
 
-        for (Object modelContainer : processedModels.values()) {
+        for (Object modelContainer : result.values()) {
             List<Map<String, Object>> models =
                     ((List<Map<String, Object>>)((Map<String, Object>)modelContainer).get("models"));
 
@@ -43,7 +48,7 @@ public class TypeScriptAngularJSON2TypeScriptClientCodegen extends TypeScriptAng
 
         }
 
-        return processedModels;
+        return result;
     }
 
     @Override
@@ -74,10 +79,10 @@ public class TypeScriptAngularJSON2TypeScriptClientCodegen extends TypeScriptAng
         if (prop.isEnum) {
             return prop.datatypeWithEnum;
         }
-        if (prop.isString) return "String";
-        if (prop.isBoolean) return "Boolean";
-        if (prop.isNumeric || prop.isInteger || prop.isLong || prop.isFloat || prop.isDouble) return "Number";
-        if (prop.isDateTime) return "Date";
+        if (prop.isString) return TYPE_STRING;
+        if (prop.isBoolean) return TYPE_BOOLEAN;
+        if (prop.isNumeric || prop.isInteger || prop.isLong || prop.isFloat || prop.isDouble) return TYPE_NUMBER;
+        if (prop.isDateTime ||prop.isDate) return TYPE_DATE;
         return prop.datatype;
     }
 
